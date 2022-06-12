@@ -1,0 +1,13 @@
+,AHD-MSDA,AMVSA-DA
+0,"tensor(0.0065, device='cuda:0', grad_fn=<SumBackward0>)","tensor(0.0065, device='cuda:0', grad_fn=<SumBackward0>)"
+1,"tensor(0.0060, device='cuda:0', grad_fn=<SumBackward0>)","tensor(0.0060, device='cuda:0', grad_fn=<SumBackward0>)"
+2,"tensor(0.0084, device='cuda:0', grad_fn=<SumBackward0>)","tensor(0.0084, device='cuda:0', grad_fn=<SumBackward0>)"
+3,"tensor(0.0146, device='cuda:0', grad_fn=<SumBackward0>)","tensor(0.0146, device='cuda:0', grad_fn=<SumBackward0>)"
+4,"tensor(0.0157, device='cuda:0', grad_fn=<SumBackward0>)","tensor(0.0157, device='cuda:0', grad_fn=<SumBackward0>)"
+5,"tensor(0.0142, device='cuda:0', grad_fn=<SumBackward0>)","tensor(0.0142, device='cuda:0', grad_fn=<SumBackward0>)"
+6,"tensor(0.0105, device='cuda:0', grad_fn=<SumBackward0>)","tensor(0.0105, device='cuda:0', grad_fn=<SumBackward0>)"
+7,"tensor(0.0092, device='cuda:0', grad_fn=<SumBackward0>)","tensor(0.0092, device='cuda:0', grad_fn=<SumBackward0>)"
+8,"tensor(0.0093, device='cuda:0', grad_fn=<SumBackward0>)","tensor(0.0093, device='cuda:0', grad_fn=<SumBackward0>)"
+9,"tensor(0.0088, device='cuda:0', grad_fn=<SumBackward0>)","tensor(0.0088, device='cuda:0', grad_fn=<SumBackward0>)"
+10,"tensor(0.0095, device='cuda:0', grad_fn=<SumBackward0>)","tensor(0.0095, device='cuda:0', grad_fn=<SumBackward0>)"
+11,"tensor(0.0084, device='cuda:0', grad_fn=<SumBackward0>)","tensor(0.0084, device='cuda:0', grad_fn=<SumBackward0>)"

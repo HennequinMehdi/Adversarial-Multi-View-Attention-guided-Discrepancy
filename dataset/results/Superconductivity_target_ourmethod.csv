@@ -1,0 +1,13 @@
+,AHD-MSDA,AMVSA-DA
+0,"tensor(0.0657, device='cuda:0')","tensor(0.0657, device='cuda:0')"
+1,"tensor(0.0341, device='cuda:0')","tensor(0.0341, device='cuda:0')"
+2,"tensor(0.0356, device='cuda:0')","tensor(0.0356, device='cuda:0')"
+3,"tensor(0.0605, device='cuda:0')","tensor(0.0605, device='cuda:0')"
+4,"tensor(0.0266, device='cuda:0')","tensor(0.0266, device='cuda:0')"
+5,"tensor(0.0540, device='cuda:0')","tensor(0.0540, device='cuda:0')"
+6,"tensor(0.0320, device='cuda:0')","tensor(0.0320, device='cuda:0')"
+7,"tensor(0.0286, device='cuda:0')","tensor(0.0286, device='cuda:0')"
+8,"tensor(0.0167, device='cuda:0')","tensor(0.0167, device='cuda:0')"
+9,"tensor(0.0174, device='cuda:0')","tensor(0.0174, device='cuda:0')"
+10,"tensor(0.0770, device='cuda:0')","tensor(0.0770, device='cuda:0')"
+11,"tensor(0.0311, device='cuda:0')","tensor(0.0311, device='cuda:0')"
