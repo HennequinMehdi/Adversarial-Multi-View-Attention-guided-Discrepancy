@@ -1,2 +1,7 @@
 ,AMVSAD,AHD-MSDA
 0,"tensor(0.0282, device='cuda:0', grad_fn=<MeanBackward0>)","tensor(0.0801, device='cuda:0', grad_fn=<MseLossBackward>)"
+1,"tensor(0.0267, device='cuda:0', grad_fn=<MeanBackward0>)","tensor(0.0227, device='cuda:0', grad_fn=<MseLossBackward>)"
+2,"tensor(0.0324, device='cuda:0', grad_fn=<MeanBackward0>)","tensor(0.0336, device='cuda:0', grad_fn=<MseLossBackward>)"
+3,"tensor(0.0857, device='cuda:0', grad_fn=<MeanBackward0>)","tensor(0.0612, device='cuda:0', grad_fn=<MseLossBackward>)"
+4,"tensor(0.0638, device='cuda:0', grad_fn=<MeanBackward0>)","tensor(0.0375, device='cuda:0', grad_fn=<MseLossBackward>)"
+5,"tensor(0.0825, device='cuda:0', grad_fn=<MeanBackward0>)","tensor(0.0551, device='cuda:0', grad_fn=<MseLossBackward>)"
