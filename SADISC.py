@@ -106,10 +106,10 @@ class SANNetwork(nn.Module):
         return self.get_mean_attention_weights()
 
     
-class Co_disc(nn.Module):
+class AMVSAD(nn.Module):
     
     def __init__(self, params):
-        super(Co_disc, self).__init__()
+        super(AMVSAD, self).__init__()
         self.device = params['device']
         self.n_views = params['n_views']
         self.num_heads = params['num_heads']

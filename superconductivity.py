@@ -28,7 +28,7 @@ from sklearn.preprocessing import MinMaxScaler
 from sklearn.preprocessing import StandardScaler
 
 
-from SADISC import Co_disc
+from SADISC import AMVSAD
 
 
 
@@ -208,7 +208,7 @@ for source in [0, 1, 2, 3]:
             print("------------------------------------------------------------Target Doamin:",target)
                 
                 
-            for method in ["AHD-MSDA","AMVSA-DA"]:
+            for method in ["AMVSAD","AHD-MSDA"]:
                     
                 if not method in Score_target:
                     Score_target[method] = []
@@ -228,7 +228,7 @@ for source in [0, 1, 2, 3]:
                 
                 if method == "AMVSAD":
                     
-                    model = Co_disc(params).to(device)
+                    model = AMVSAD(params).to(device)
                     err_s, err_t  = model.fit(X_v,X_t,y_v, y_t, X_v_unlabeled, y_unlabeled, stopping_crit =10,num_epochs=epochs_adapt, batch_size = batch_size)
                     
                     
@@ -268,10 +268,10 @@ for source in [0, 1, 2, 3]:
                         err_s, disc = model.compute_loss(X_v_unlabeled, X_t, [y_unlabeled,y_unlabeled])
                         err_t = model.loss(y_t, model.predict(X_t))
                         print('Epoch: %i/%i (h_pred); Train loss: %.3f ; Disc: %.3f ; Test loss: %.3f'%(epoch+1, epochs_adapt, err_s.item(), disc.item(), err_t.item()))
-                    
-                Score_target[method].append(err_t.detach())
+                        
+                Score_target[method].append(err_t)
                 Score_source[method].append(err_s)
                         
                         
-            pd.DataFrame(Score_target).to_csv("./dataset/results/Superconductivity_target_ourmethod"+".csv")
-            pd.DataFrame(Score_source).to_csv("./dataset/results/Superconductivity_source_ourmethod"+".csv")
+            pd.DataFrame(Score_target).to_csv("./dataset/results/Superconductivity_target_our_method"+".csv")
+            pd.DataFrame(Score_source).to_csv("./dataset/results/Superconductivity_source_our_method"+".csv")
