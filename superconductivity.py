@@ -226,11 +226,11 @@ for source in [0, 1, 2, 3]:
                 y_v = torch.from_numpy(y_s[0]).type(torch.cuda.FloatTensor).to(device)
                 y_unlabeled = torch.from_numpy(y_unlabeled[0]).type(torch.cuda.FloatTensor).to(device)
                 
-                # if method == "AMVSAD":
-                #     # print("uncoment for AMVSAD")
+                if method == "AMVSAD":
+                    # print("uncoment for AMVSAD")
                     
-                #     model = AMVSAD(params).to(device)
-                #     err_s, err_t  = model.fit(X_v,X_t,y_v, y_t, X_v_unlabeled, y_unlabeled, stopping_crit =10,num_epochs=epochs_adapt, batch_size = batch_size)
+                    model = AMVSAD(params).to(device)
+                    err_s, err_t  = model.fit(X_v,X_t,y_v, y_t, X_v_unlabeled, y_unlabeled, stopping_crit =10,num_epochs=epochs_adapt, batch_size = batch_size)
                     
                     
                 if method == "AHD-MSDA":
@@ -272,8 +272,9 @@ for source in [0, 1, 2, 3]:
                         err_t = model.loss(y_t, model.predict(X_t))
                         print('Epoch: %i/%i (h_pred); Train loss: %.3f ; Disc: %.3f ; Test loss: %.3f'%(epoch+1, epochs_adapt, err_s.item(), disc.item(), err_t.item()))
                         
-                Score_target[method].append(err_t)
-                Score_source[method].append(err_s)
+                
+                Score_target[method].append(err_t.item())
+                Score_source[method].append(err_s.item())
                         
                         
             pd.DataFrame(Score_target).to_csv("./dataset/results/Superconductivity_target_AHD-MSDA"+".csv")

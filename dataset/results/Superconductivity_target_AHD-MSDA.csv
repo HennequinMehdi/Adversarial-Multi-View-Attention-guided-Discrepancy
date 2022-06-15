@@ -1,11 +1,11 @@
 ,AMVSAD,AHD-MSDA
-0,0,"tensor(0.0201, device='cuda:0', grad_fn=<MseLossBackward>)"
-1,"tensor(0.0201, device='cuda:0', grad_fn=<MseLossBackward>)","tensor(0.0373, device='cuda:0', grad_fn=<MseLossBackward>)"
-2,"tensor(0.0373, device='cuda:0', grad_fn=<MseLossBackward>)","tensor(0.0492, device='cuda:0', grad_fn=<MseLossBackward>)"
-3,"tensor(0.0492, device='cuda:0', grad_fn=<MseLossBackward>)","tensor(0.0555, device='cuda:0', grad_fn=<MseLossBackward>)"
-4,"tensor(0.0555, device='cuda:0', grad_fn=<MseLossBackward>)","tensor(0.0403, device='cuda:0', grad_fn=<MseLossBackward>)"
-5,"tensor(0.0403, device='cuda:0', grad_fn=<MseLossBackward>)","tensor(0.0584, device='cuda:0', grad_fn=<MseLossBackward>)"
-6,"tensor(0.0584, device='cuda:0', grad_fn=<MseLossBackward>)","tensor(0.0312, device='cuda:0', grad_fn=<MseLossBackward>)"
-7,"tensor(0.0312, device='cuda:0', grad_fn=<MseLossBackward>)","tensor(0.0310, device='cuda:0', grad_fn=<MseLossBackward>)"
-8,"tensor(0.0310, device='cuda:0', grad_fn=<MseLossBackward>)","tensor(0.0309, device='cuda:0', grad_fn=<MseLossBackward>)"
-9,"tensor(0.0309, device='cuda:0', grad_fn=<MseLossBackward>)","tensor(0.0356, device='cuda:0', grad_fn=<MseLossBackward>)"
+0,0.028158007189631462,0.08012115955352783
+1,0.02674468606710434,0.022652508690953255
+2,0.03235451877117157,0.0336274653673172
+3,0.0856853574514389,0.06123021990060806
+4,0.0637778490781784,0.03751072660088539
+5,0.0824795812368393,0.055116795003414154
+6,0.05739346519112587,0.022388583049178123
+7,0.02323048561811447,0.029307546094059944
+8,0.0705575942993164,0.02817617915570736
+9,0.04974336177110672,0.021889038383960724
