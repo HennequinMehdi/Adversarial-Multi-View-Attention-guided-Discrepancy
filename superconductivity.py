@@ -230,7 +230,7 @@ for source in [0, 1, 2, 3]:
                     # print("uncoment for AMVSAD")
                     
                     model = AMVSAD(params).to(device)
-                    err_s, err_t  = model.fit(X_v,X_t,y_v, y_t, X_v_unlabeled, y_unlabeled, stopping_crit =10,num_epochs=epochs_adapt, batch_size = batch_size)
+                    err_s, err_t  = model.fit(X_v,X_t,y_v, y_t, X_v_unlabeled, y_unlabeled, stopping_crit =5,num_epochs=epochs_adapt, batch_size = batch_size)
                     
                     
                 if method == "AHD-MSDA":
@@ -277,7 +277,5 @@ for source in [0, 1, 2, 3]:
                 Score_source[method].append(err_s.item())
                         
                         
-            pd.DataFrame(Score_target).to_csv("./dataset/results/Superconductivity_target_AHD-MSDA"+".csv")
-            pd.DataFrame(Score_source).to_csv("./dataset/results/Superconductivity_source_AHD-MSDA"+".csv")
-            # pd.DataFrame(Score_target).to_csv("./dataset/results/Superconductivity_target_our_method"+".csv")
-            # pd.DataFrame(Score_source).to_csv("./dataset/results/Superconductivity_source_our_method"+".csv")
+            pd.DataFrame(Score_target).to_csv("./dataset/results/Superconductivity_target_our_method_and_AHD-MSDA"+".csv")
+            pd.DataFrame(Score_source).to_csv("./dataset/results/Superconductivity_source_our_method_and_AHD-MSDA"+".csv")
