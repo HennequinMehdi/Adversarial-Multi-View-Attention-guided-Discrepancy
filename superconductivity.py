@@ -233,7 +233,7 @@ for source in [0, 1, 2, 3]:
                     err_s, err_t  = model.fit(X_v,X_t,y_v, y_t, X_v_unlabeled, y_unlabeled, stopping_crit =5,num_epochs=epochs_adapt, batch_size = batch_size)
                     
                     
-                if method == "AHD-MSDA":
+                elif method == "AHD-MSDA":
                     # print("uncoment for AHD-MSDA")
 
                     model = Disc_MSDANet(paramsAHD).to(device)
