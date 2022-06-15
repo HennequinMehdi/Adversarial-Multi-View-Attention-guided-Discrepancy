@@ -80,12 +80,8 @@ class SANNetwork(nn.Module):
 
     def forward(self, x):
 
-        # attend and aggregate
         out = self.forward_attention(x)
-        # out = self.sigmoid(self.activation(self.fc1(out)))
-        # print(len(out))
-        # out = self.softmax(out)
-        
+
 
 
         return out
@@ -104,7 +100,6 @@ class AMVSAD(nn.Module):
         self.device = params['device']
         self.n_views = params['n_views']
         self.num_heads = params['num_heads']
-        # Parameters of hidden, fully-connected layers, feature learning component.
         self.feature_extractor = params['feature_extractor']
         # Parameter of the final regressor.
         self.h_v = params['h_v']
@@ -117,7 +112,6 @@ class AMVSAD(nn.Module):
         self.model_alpha_attention_layer = SANNetwork(self.n_views, hidden_layer_size = params['hidden_layer_size_attention'], num_heads = self.num_heads, device=self.device).to(self.device)
         self.model_attention_target = SANNetwork(params['input_shape_target'], hidden_layer_size = params['hidden_layer_size_attention'], num_heads = self.num_heads, device=self.device).to(self.device)
         self.alpha = torch.nn.Parameter(torch.Tensor(np.ones(self.n_views)/self.n_views), requires_grad=True) 
-        # self.alpha = torch.Tensor(np.ones(self.n_views)/self.n_views) 
         #Paramete
         
 
