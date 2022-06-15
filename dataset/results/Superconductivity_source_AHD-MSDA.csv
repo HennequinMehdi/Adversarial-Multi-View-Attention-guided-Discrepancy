@@ -9,5 +9,3 @@
 7,"tensor(0.0089, device='cuda:0', grad_fn=<SumBackward0>)","tensor(0.0136, device='cuda:0', grad_fn=<SumBackward0>)"
 8,"tensor(0.0136, device='cuda:0', grad_fn=<SumBackward0>)","tensor(0.0078, device='cuda:0', grad_fn=<SumBackward0>)"
 9,"tensor(0.0078, device='cuda:0', grad_fn=<SumBackward0>)","tensor(0.0073, device='cuda:0', grad_fn=<SumBackward0>)"
-10,"tensor(0.0073, device='cuda:0', grad_fn=<SumBackward0>)","tensor(0.0065, device='cuda:0', grad_fn=<SumBackward0>)"
-11,"tensor(0.0065, device='cuda:0', grad_fn=<SumBackward0>)","tensor(0.0065, device='cuda:0', grad_fn=<SumBackward0>)"

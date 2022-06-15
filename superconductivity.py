@@ -226,13 +226,16 @@ for source in [0, 1, 2, 3]:
                 y_v = torch.from_numpy(y_s[0]).type(torch.cuda.FloatTensor).to(device)
                 y_unlabeled = torch.from_numpy(y_unlabeled[0]).type(torch.cuda.FloatTensor).to(device)
                 
-                if method == "AMVSAD":
+                # if method == "AMVSAD":
+                #     # print("uncoment for AMVSAD")
                     
-                    model = AMVSAD(params).to(device)
-                    err_s, err_t  = model.fit(X_v,X_t,y_v, y_t, X_v_unlabeled, y_unlabeled, stopping_crit =10,num_epochs=epochs_adapt, batch_size = batch_size)
+                #     model = AMVSAD(params).to(device)
+                #     err_s, err_t  = model.fit(X_v,X_t,y_v, y_t, X_v_unlabeled, y_unlabeled, stopping_crit =10,num_epochs=epochs_adapt, batch_size = batch_size)
                     
                     
-                elif method == "AHD-MSDA":
+                if method == "AHD-MSDA":
+                    # print("uncoment for AHD-MSDA")
+
                     model = Disc_MSDANet(paramsAHD).to(device)
                     opt_feat = torch.optim.Adam([{'params': model.feature_extractor.parameters()}],lr=lr)
                     opt_pred = torch.optim.Adam([{'params': model.h_pred.parameters()}],lr=lr)
@@ -273,5 +276,7 @@ for source in [0, 1, 2, 3]:
                 Score_source[method].append(err_s)
                         
                         
-            pd.DataFrame(Score_target).to_csv("./dataset/results/Superconductivity_target_our_method"+".csv")
-            pd.DataFrame(Score_source).to_csv("./dataset/results/Superconductivity_source_our_method"+".csv")
+            pd.DataFrame(Score_target).to_csv("./dataset/results/Superconductivity_target_AHD-MSDA"+".csv")
+            pd.DataFrame(Score_source).to_csv("./dataset/results/Superconductivity_source_AHD-MSDA"+".csv")
+            # pd.DataFrame(Score_target).to_csv("./dataset/results/Superconductivity_target_our_method"+".csv")
+            # pd.DataFrame(Score_source).to_csv("./dataset/results/Superconductivity_source_our_method"+".csv")

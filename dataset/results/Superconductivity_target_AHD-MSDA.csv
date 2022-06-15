@@ -9,5 +9,3 @@
 7,"tensor(0.0312, device='cuda:0', grad_fn=<MseLossBackward>)","tensor(0.0310, device='cuda:0', grad_fn=<MseLossBackward>)"
 8,"tensor(0.0310, device='cuda:0', grad_fn=<MseLossBackward>)","tensor(0.0309, device='cuda:0', grad_fn=<MseLossBackward>)"
 9,"tensor(0.0309, device='cuda:0', grad_fn=<MseLossBackward>)","tensor(0.0356, device='cuda:0', grad_fn=<MseLossBackward>)"
-10,"tensor(0.0356, device='cuda:0', grad_fn=<MseLossBackward>)","tensor(0.1006, device='cuda:0', grad_fn=<MseLossBackward>)"
-11,"tensor(0.1006, device='cuda:0', grad_fn=<MseLossBackward>)","tensor(0.0421, device='cuda:0', grad_fn=<MseLossBackward>)"

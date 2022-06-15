@@ -1,2 +1,0 @@
-,AMVSAD,AHD-MSDA
-0,"tensor(0.0282, device='cuda:0', grad_fn=<MeanBackward0>)","tensor(0.0801, device='cuda:0', grad_fn=<MseLossBackward>)"

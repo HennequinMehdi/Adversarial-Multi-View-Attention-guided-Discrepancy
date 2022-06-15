@@ -38,7 +38,7 @@ class E2EDatasetLoader(TensorDataset):
         self.features = features
 
         if targets is not None:
-            self.targets = targets  # .tocsr()
+            self.targets = targets  
         else:
             self.targets = targets
 
@@ -77,15 +77,6 @@ class SANNetwork(nn.Module):
         out = placeholder
         return out
 
-    # def get_mean_attention_weights(self):
-    #     activated_weight_matrices = []
-    #     for head in self.multi_head:
-    #         wm = head.weight.data
-    #         diagonal_els = torch.diag(wm)
-    #         activated_diagonal = self.softmax2(diagonal_els)
-    #         activated_weight_matrices.append(activated_diagonal)
-    #     output_mean = torch.mean(torch.stack(activated_weight_matrices, axis=0), axis=0)
-    #     return output_mean
 
     def forward(self, x):
 
@@ -152,14 +143,7 @@ class AMVSAD(nn.Module):
     def forward(self, X_s, X_t):
         """
         Forward pass
-        Inputs:
-            - X_s: list of torch.Tensor (m_s, d), source data
-            - X_t: torch.Tensor (n, d), target data
-        Outputs:
-            - y_spred: list of torch.Tensor (m_s), h source prediction
-            - y_sdisc: list of torch.Tensor (m_s), h' source prediction
-            - y_tpred: list of torch.Tensor (m_s), h target prediction
-            - y_tdisc: list of torch.Tensor (m_s), h' target prediction
+
         """
         
         sx, tx = self.forward_features(X_s,X_t)
@@ -197,15 +181,7 @@ class AMVSAD(nn.Module):
         
         return y_spred, y_sdisc, y_tpred, y_tdisc
     
-    # def forward_alpha_attention(self, X_s, X_t):
-        
-    #     sx, tx, y_sdisc, y_tdisc = self.forward(X_s, X_t)
-    #     sx_alpha = torch.cat((sx),1).clone()
-    #     sx_alpha = self.model_alpha_attention_layer(sx_alpha)
-    #     sx_alpha = sx_alpha
-        
-    
-        # return sx_alpha, tx, sx
+
             
             
     def train_h(self, X_s, X_t, y_s, clip = 1):
@@ -235,11 +211,7 @@ class AMVSAD(nn.Module):
     def train_h_discrepancy(self, X_s, X_t, y_s,clip = 1):
         """
         Train h to maximize the discrepancy
-        Inputs:
-            - X_s: list of torch.Tensor, source data
-            - X_t: torch.Tensor, target data
-            - y_s: list of torch.Tensor, source y
-            - clip: max values of the gradients
+
         """
         #Training
         self.train()
@@ -266,11 +238,7 @@ class AMVSAD(nn.Module):
     def train_feat_discrepancy(self, X_s, X_t, y_s, clip = 1,mu =1):
         """
         Train phi to minimize the discrepancy
-        Inputs:
-            - X_s: list of torch.Tensor, source data
-            - X_t: torch.Tensor, target data
-            - y_s: list of torch.Tensor, source y
-            - clip: max values of the gradients
+
         """
         #Training
         self.train()
@@ -297,11 +265,7 @@ class AMVSAD(nn.Module):
     def train_alpha_discrepancy(self, X_s, X_t, y_s, lam_alpha=0.01, clip=1):
         """
         Train phi to minimize the discrepancy
-        Inputs:
-            - X_s: list of torch.Tensor, source data
-            - X_t: torch.Tensor, target data
-            - y_s: list of torch.Tensor, source y
-            - clip: max values of the gradients
+
         """
         #Training
         self.train()
