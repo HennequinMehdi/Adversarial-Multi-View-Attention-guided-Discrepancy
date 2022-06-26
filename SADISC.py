@@ -5,6 +5,7 @@
 from sklearn.preprocessing import StandardScaler
 from sklearn.preprocessing import Normalizer
 from sklearn.preprocessing import MinMaxScaler
+import matplotlib.pyplot as plt
 
 
 import torch
@@ -54,6 +55,7 @@ class E2EDatasetLoader(TensorDataset):
         return instance, target
 
 class SANNetwork(nn.Module):
+    
     def __init__(self, input_size, hidden_layer_size = 100, num_heads=2, device="cuda"):
         super(SANNetwork, self).__init__()
         self.device  = device
@@ -63,6 +65,7 @@ class SANNetwork(nn.Module):
         self.num_heads = num_heads
         self.multi_head = nn.ModuleList([nn.Linear(input_size, input_size) for k in range(num_heads)])
         self.q = nn.ModuleList([nn.Linear(input_size, input_size, bias=False) for k in range(num_heads)])
+
         
     def forward_attention(self, input_space, return_softmax=True):
         placeholder = torch.zeros(input_space.shape).to(self.device)
@@ -82,10 +85,11 @@ class SANNetwork(nn.Module):
 
         out = self.forward_attention(x)
 
-
-
         return out
 
+
+    
+    
     def get_attention(self, x):
         return self.forward_attention(x, return_softmax=True)
 
@@ -112,9 +116,29 @@ class AMVSAD(nn.Module):
         self.model_alpha_attention_layer = SANNetwork(self.n_views, hidden_layer_size = params['hidden_layer_size_attention'], num_heads = self.num_heads, device=self.device).to(self.device)
         self.model_attention_target = SANNetwork(params['input_shape_target'], hidden_layer_size = params['hidden_layer_size_attention'], num_heads = self.num_heads, device=self.device).to(self.device)
         self.alpha = torch.nn.Parameter(torch.Tensor(np.ones(self.n_views)/self.n_views), requires_grad=True) 
+        self.colums = params['columns']
+        self.experiments = params['experiments']
         #Paramete
         
+    def get_mean_attention_weights(self, X_s, X_t):
+        sx, tx = X_s.copy(), X_t.clone()
+        for i in range(self.n_views):
+            sx[i] = self.model_attention[i](sx[i])
+            mean_attention_weights = sx[i].mean(dim=0).cpu().detach().numpy()[:len(self.colums[i])].argsort()[::-1][:10]
+            plt.plot(self.colums[i][mean_attention_weights], sx[i].mean(dim=0).cpu().detach().numpy()[mean_attention_weights], label = "Mean attention weights view " + str(i+1))
+    
+        
+        tx = self.model_attention_target(tx)
+        mean_attention_weights = tx.mean(dim=0).cpu().detach().numpy().argsort()[::-1][:10]
+        plt.plot(self.colums[-1][mean_attention_weights], tx.mean(dim=0).cpu().detach().numpy()[mean_attention_weights], label = "Mean attention weights target")
 
+        plt.legend(loc = 1)
+        plt.xticks(rotation = 90)
+        plt.tight_layout()
+        # plt.show()
+        plt.savefig(('./images/mean_attention_weights'+ self.experiments[0] + "_" + self.experiments[1]))
+        plt.close()
+        
 
     def forward_features(self, X_s, X_t):
         
@@ -306,8 +330,6 @@ class AMVSAD(nn.Module):
           
     
     def fit(self,X_s, X_t, y_s, y_t, X_s_val, y_val, stopping_crit, num_epochs, batch_size = 32):
-
-        print("X_t",X_t.shape)
         
         train_dataset = E2EDatasetLoader(X_s, y_s)
         dataloader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
@@ -357,7 +379,6 @@ class AMVSAD(nn.Module):
             mean_loss = torch.mean(torch.stack(losses_per_batch))
             mean_loss_disc = torch.mean(torch.stack(disc_per_batch))
             mean_loss_target = torch.mean(torch.stack(losses_per_batch_target))
-            # print(self.alpha)
             if mean_loss_target < current_loss:
                 current_loss = mean_loss_target
                 stopping_iteration = 0
@@ -367,5 +388,6 @@ class AMVSAD(nn.Module):
             logging.info("epoch {}, mean loss disc per batch source {}".format(epoch, mean_loss_disc))
             logging.info("epoch {}, mean loss target per batch  {}".format(epoch, mean_loss_target))
             # logging.info("epoch {}, alpha per batch source {}".format(epoch,self.alpha))
-
+            
+        self.get_mean_attention_weights(X_s_val,X_t)
         return mean_loss, mean_loss_target

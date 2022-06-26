@@ -103,7 +103,6 @@ columns= X_v2.columns
 X_v2 =  MinMaxscaler.fit_transform(scaler2.fit_transform(X_v2))
 X_v2 =  pd.DataFrame(data =X_v2,index=index,columns = columns )
 
-## for each domain we create diffenrent views
 rng = default_rng()
 SelectFeatures = rng.choice((X_v1.shape[1]-1), size=int((X_v1.shape[1]/2)), replace=False) ## we select randomly features
 dataframe_views = list(pd.concat([X_v1,X_v2], axis=1).sample(n=int((X_v1.shape[1] + X_v2.shape[1])/2),axis='columns').columns)
@@ -125,7 +124,7 @@ for i in range(len(cuts)):
     X_s.append(X_v)
     
     
-    
+name_columns = [X_s[0][0].copy().drop(dataframe_views1, axis=1).columns, X_s[0][1].copy().drop(dataframe_views2, axis=1).columns, pd.concat([X_s[0][0].copy()[dataframe_views1],X_s[0][1].copy()[dataframe_views2]],1).columns]    
     
 def get_feature_extractor():
     return nn.ModuleList([
@@ -189,6 +188,9 @@ params= {'device' : device, 'n_views': 2, 'num_heads' : 2,'loss': torch.nn.MSELo
 params['feature_extractor'] = get_feature_extractor()
 params['h_v'] = list_modelViews
 params['discriminator'] = get_discriminator(output_dim=1)
+params['columns'] = name_columns
+
+
 
 
 paramsAHD = {'input_dim': 84, 'output_dim': 1, 'n_sources': 2, 'loss': torch.nn.MSELoss() ,'weighted_loss': weighted_mse, 'min_pred': -np.inf, 'max_pred': np.inf}
@@ -207,7 +209,7 @@ for source in [0, 1, 2, 3]:
             print("------------------------------------------------------------Source Doamin:",source)
             print("------------------------------------------------------------Target Doamin:",target)
                 
-                
+            params['experiments'] = [str(source),str(target)]
             for method in ["AMVSAD","AHD-MSDA"]:
                     
                 if not method in Score_target:
@@ -231,6 +233,7 @@ for source in [0, 1, 2, 3]:
                     
                     model = AMVSAD(params).to(device)
                     err_s, err_t  = model.fit(X_v,X_t,y_v, y_t, X_v_unlabeled, y_unlabeled, stopping_crit =5,num_epochs=epochs_adapt, batch_size = batch_size)
+                    
                     
                     
                 elif method == "AHD-MSDA":
@@ -275,6 +278,7 @@ for source in [0, 1, 2, 3]:
                 
                 Score_target[method].append(err_t.item())
                 Score_source[method].append(err_s.item())
+                
                         
                         
             pd.DataFrame(Score_target).to_csv("./dataset/results/Superconductivity_target_our_method_and_AHD-MSDA"+".csv")
